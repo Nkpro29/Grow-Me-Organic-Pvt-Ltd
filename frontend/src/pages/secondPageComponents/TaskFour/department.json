@@ -1,0 +1,27 @@
+[
+    {
+        "id":"1",
+        "department": "Customer_Service",
+        "sub_departments": [
+            "Support",
+            "Customer_Success"
+        ]
+    },
+    {
+        "id":"2",
+        "department": "Design",
+        "sub_departments": [
+            "Graphic_Design",
+            "Product_Design",
+            "Web_Design"
+        ]
+    },
+    {
+        "id":"3",
+        "department": "Development",
+        "sub_departments": [
+            "Android_App_Development",
+            "Web_Development"
+        ]
+    }
+]
