@@ -1,28 +1,28 @@
 import "./App.css";
-import { useState } from "react";
 import FirstPage from "./pages/firstpage";
 import SecondPage from "./pages/secondPage";
-import TaskFour from "./pages/secondPageComponents/TaskFour/department";
-
+import { BrowserRouter as Router, Route ,Routes} from "react-router-dom";
 function App() {
-  const [openSecondPage, setOpenSecondPage] = useState(false);
+  // const [openSecondPage, setOpenSecondPage] = useState(false);
 
-  const handleUserSubmit = (userData: {
-    userName: string;
-    phone_no: number;
-    email: string;
-  }) => {
-    console.log(userData);
-    setOpenSecondPage(true);
-  };
+  // const handleUserSubmit = (userData: {
+  //   userName: string;
+  //   phone_no: number;
+  //   email: string;
+  // }) => {
+  //   console.log(userData);
+  //   setOpenSecondPage(true);
+  // };
+
 
   return (
     <>
-      {!openSecondPage ? (
-        <FirstPage onSubmit={handleUserSubmit} />
-      ) : (
-        <SecondPage />
-      )}
+      <Router>
+        <Routes>
+        <Route path="/" Component={FirstPage} />
+        <Route path="/secondPage" Component={SecondPage} />
+        </Routes>
+      </Router>
     </>
   );
 }

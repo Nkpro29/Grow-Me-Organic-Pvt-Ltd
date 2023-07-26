@@ -4,12 +4,15 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
-const FirstPage: React.FC<{ onSubmit: (userData: { userName: string; phone_no:number; email: string })=> void}> = ({ onSubmit }) => {
+const FirstPage: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [phone, setPhone] = useState<number | number>(Number);
   const [email, setEmail] = useState("");
+
+  const navigate = useNavigate();
 
   const handleNameInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -29,7 +32,7 @@ const FirstPage: React.FC<{ onSubmit: (userData: { userName: string; phone_no:nu
     setEmail(event.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e:React.MouseEvent<HTMLButtonElement,MouseEvent>) => {
     e.preventDefault();
     const userData = {
       userName: userName,
@@ -42,8 +45,9 @@ const FirstPage: React.FC<{ onSubmit: (userData: { userName: string; phone_no:nu
           alert('please enter the details before accessing the page');
       }
       else{
-        onSubmit(userData);
+        navigate('/secondPage');
         console.log("data submitted successfully");
+
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -59,7 +63,6 @@ const FirstPage: React.FC<{ onSubmit: (userData: { userName: string; phone_no:nu
         }}
         noValidate
         autoComplete="off"
-        onSubmit={handleSubmit}
       >
         <TextField
           required
@@ -85,7 +88,7 @@ const FirstPage: React.FC<{ onSubmit: (userData: { userName: string; phone_no:nu
           value={email}
           onChange={handleEmailInputChange}
         />
-        <Button variant="contained" type="submit">
+        <Button variant="contained" onClick={handleSubmit}>
           Submit
         </Button>
       </Box>
